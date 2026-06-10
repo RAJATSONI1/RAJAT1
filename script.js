@@ -221,3 +221,56 @@ setInterval(
     rotateReviews,
     8000
 );
+const API_KEY =
+"goldapi-40ef4bdc9438b80d669518c6c08552be-io";
+async function getGoldRate() {
+
+    const response =
+    await fetch(
+        "https://www.goldapi.io/api/XAU/INR",
+        {
+            headers: {
+                "x-access-token": API_KEY
+            }
+        }
+    );
+
+    const data =
+    await response.json();
+
+    console.log(data);
+}
+document.getElementById(
+    "gold24"
+).innerHTML =
+`₹ ${Math.round(data.price)}`;
+const gold24 =
+data.price;
+
+const gold22 =
+(gold24 * 0.916).toFixed(0);
+
+document.getElementById(
+    "gold22"
+).innerHTML =
+`₹ ${gold22}`;
+async function getSilverRate() {
+
+    const response =
+    await fetch(
+        "https://www.goldapi.io/api/XAG/INR",
+        {
+            headers: {
+                "x-access-token": API_KEY
+            }
+        }
+    );
+
+    const data =
+    await response.json();
+
+    document.getElementById(
+        "silver"
+    ).innerHTML =
+    `₹ ${Math.round(data.price)}`;
+}
